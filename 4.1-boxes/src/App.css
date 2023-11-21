@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.box {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.greenBox {
+  background-color: lightgreen;
+  width: 80vw;
+  height: 80vh;
+}
+
+.bluebox {
+  background-color: lightskyblue;
+}
+
+.pinkbox {
+  background-color: pink;
+  justify-content: space-evenly;
+}
+
+.purpleBox {
+  background-color: plum;
+  width: 30%;
+  height: 30%;
+}
