@@ -4,15 +4,29 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
   const [sign, setSign] = useState("");
-  useEffect(() => {
-    setSign(() => (count > 0 ? "positive" : count < 0 ? "negative" : ""));
-  }, [count]);
+  //! another solution
+  // useEffect(() => {
+  //   setSign(() => (count > 0 ? "positive" : count < 0 ? "negative" : ""));
+  // }, [count]);
 
   function handleChange(target) {
-    if (target.id === "increment") setCount((count) => count + 1);
-    if (target.id === "decrement") setCount((count) => count - 1);
+    if (target.id === "increment")
+      setCount((count) => {
+        const x = count + 1;
+        changeSign(x);
+        return x;
+      });
+    if (target.id === "decrement")
+      setCount((count) => {
+        const x = count - 1;
+        changeSign(x);
+        return x;
+      });
   }
 
+  function changeSign(param) {
+    setSign(() => (param > 0 ? "positive" : param < 0 ? "negative" : ""));
+  }
   return (
     <>
       <h1>6.3| Increment and Decrementt</h1>
