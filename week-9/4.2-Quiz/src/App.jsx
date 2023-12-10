@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Quiz from "./components/quiz";
 import "./App.css";
 

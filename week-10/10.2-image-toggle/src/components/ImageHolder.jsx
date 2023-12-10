@@ -20,6 +20,13 @@ export const ImageHolder = () => {
         onMouseOut={handleHoverOut}
         style={{ width: 500 }}
       />
+      <img
+        src={flowerBw}
+        ref={imgRef}
+        onMouseEnter={handleHoverIn}
+        onMouseOut={handleHoverOut}
+        style={{ width: 500 }}
+      />
     </div>
   );
 };

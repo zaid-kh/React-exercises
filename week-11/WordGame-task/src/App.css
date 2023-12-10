@@ -1,0 +1,31 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+input {
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  font-size: large;
+}
+
+input:focus {
+  background-color: beige;
+}
+
+.correct {
+  background-color: rgb(189, 252, 189);
+}
+
+.wrong {
+  background-color: rgb(253, 161, 161);
+}
+
+.inputs-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
