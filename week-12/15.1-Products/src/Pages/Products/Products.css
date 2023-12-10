@@ -1,0 +1,19 @@
+.products-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 5dvh;
+
+}
+
+.product-item {
+    padding: 1rem;
+}
+
+.product-item:hover {
+    color: darkkhaki;
+    cursor: pointer;
+}

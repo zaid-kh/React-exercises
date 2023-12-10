@@ -1,0 +1,20 @@
+header {
+    background-color: rgb(16, 92, 67);
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+}
+
+nav button {
+    color: aliceblue;
+    background-color: transparent;
+    padding: 1em;
+    margin: 0 1em;
+    border: none;
+}
+
+nav button:hover {
+    background-color: turquoise;
+}
