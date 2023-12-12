@@ -21,20 +21,11 @@ function App() {
     );
   }
   function changeTaskStatus(name) {
-    todosArrayDispatch({ type: "CHANGE_TASK_STATUS", payload: name });
-
-    setTodosArray((prevTodosArray) =>
-      prevTodosArray.map((task) =>
-        task.name === name ? { ...task, completed: !task.completed } : task
-      )
-    );
+    todosArrayDispatch({ type: "CHANGE_TASK_STATUS", payload: { name } });
   }
 
   function deleteTask(name) {
-    todosArrayDispatch({ type: "DELETE_TASK", payload: name });
-    setTodosArray((prevTodosArray) =>
-      prevTodosArray.filter((task) => task.name !== name)
-    );
+    todosArrayDispatch({ type: "DELETE_TASK", payload: { name } });
   }
 
   function handleSubmit(e) {
@@ -47,55 +38,47 @@ function App() {
     };
     console.log("newTask: ", newTask);
     todosArrayDispatch({ type: "ADD_TASK", payload: { newTask } });
-
-    setTodosArray((prevTodosArray) => {
-      const updatedTodosArray = [...prevTodosArray, newTask];
-      localStorage.setItem("todosArray", JSON.stringify(updatedTodosArray));
-      return updatedTodosArray;
-    });
     e.target.taskName.value = "";
   }
+
   // initialize array for state
   const initialTodosArray =
-    JSON.parse(localStorage.getItem("todosArray")) || [];
+    JSON.parse(localStorage.getItem("todosArrayState")) || [];
 
   function todosArrayReducer(state, action) {
     switch (action.type) {
       case "DELETE_TASK":
-        return (state) =>
-          state.filter((task) => task.name !== action.payload.name);
+        state = state.filter((task) => task.name !== action.payload.name);
+        return state;
 
       case "CHANGE_TASK_STATUS":
-        return (state) =>
-          state.map((task) =>
-            task.name === action.payload.name
-              ? { ...task, completed: !task.completed }
-              : task
-          );
+        return state.map((task) =>
+          task.name === action.payload.name
+            ? { ...task, completed: !task.completed }
+            : task
+        );
       case "ADD_TASK":
-        (state) => {
-          const updatedTodosArray = [...state, action.payload.newTask];
-          localStorage.setItem("todosArray", JSON.stringify(updatedTodosArray));
-          return updatedTodosArray;
-        };
-        break;
+        console.log("state: ", state);
+        state = [...state, action.payload.newTask];
+        localStorage.setItem("todosArrayState", JSON.stringify(state));
+        return state;
       default:
-        break;
+        return state;
     }
-    return state;
   }
 
   const [todosArrayState, todosArrayDispatch] = useReducer(
     todosArrayReducer,
     initialTodosArray
   );
-  const [todosArray, setTodosArray] = useState(initialTodosArray);
+
   // update storage whenever state is changed
-
   useEffect(() => {
-    localStorage.setItem("todosArray", JSON.stringify(todosArray));
-  }, [todosArray]);
+    console.log("changed todosArrayState: ", todosArrayState);
+    localStorage.setItem("todosArrayState", JSON.stringify(todosArrayState));
+  }, [todosArrayState]);
 
+  console.log("todosArrayState: ", todosArrayState);
   return (
     <>
       <h1>17.2 | Reducer CRUD</h1>
